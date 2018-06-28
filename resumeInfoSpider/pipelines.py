@@ -34,23 +34,21 @@ class PersonalInfoPipeline(object):
     """
 
     def process_item(self, item, spider):
-        host = settings['MYSQL_HOSTS']
-        user = settings['MYSQL_USER']
-        psd = settings['MYSQL_PASSWORD']
-        db = settings['MYSQL_DB']
-        charset = settings['CHARSET']
-        port = settings['MYSQL_PORT']
+        host = '172.16.192.35'
+        db = 'btxa'
+        port = 3306
+        user = 'root'
+        psd = 'btxa@123'
+        charset = 'utf8'
 
         con = pymysql.connect(host=host, user=user, passwd=psd, db=db, charset=charset, port=port)
-
         cue = con.cursor()
         print("mysql connect succes")
         try:
-            cue.execute(
-                "insert into personal_info(name ,birth ,sex ,workTime ,maritalStatus ,phone ,email ,income ,salaryExpectation ,major ,School ,education) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)" % (
-                    item["name"], item["birth"], item["sex"], item["workTime"], item["maritalStatus"], item["phone"],
-                    item["email"], item["income"], item["salaryExpectation"], item["major"], item["School"],
-                    item["education"]))
+            cue.execute("insert into personal_info(name ,birth ,sex ,workTime ,maritalStatus ,phone ,email ,income ,salaryExpectation ,major ,school ,education) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+                ,(item["name"], item["birth"], item["sex"], item["workTime"], item["maritalStatus"], item["phone"],
+                  item["email"], item["income"], item["salaryExpectation"], item["major"], item["school"],
+                  item["education"]))
             print("insert success")
         except Exception as e:
             print('Insert error:', e)

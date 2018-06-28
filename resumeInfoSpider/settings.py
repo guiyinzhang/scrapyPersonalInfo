@@ -93,10 +93,10 @@ USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, lik
 ROBOTSTXT_OBEY = False
 
 MYSQL_HOST = '172.16.192.35'
+MYSQL_DB = 'btxa'
+MYSQL_PORT = 3306
 MYSQL_USER = 'root'
 MYSQL_PASSWORD = 'btxa@123'
-MYSQL_PORT = 3306
-MYSQL_DB = 'btxa'
 CHARSET = 'utf8'
 ITEM_PIPELINES = {
     'resumeInfoSpider.pipelines.PersonalInfoPipeline': 100
